@@ -12,7 +12,7 @@ class Maze(object):
     self.t = makeTurtle(self.w)
     penUp(self.t)
     moveTo(self.t, 30, 190)
-    turnLeft(self.t)
+    
    
     
   def colorInFront(self):
@@ -99,7 +99,9 @@ if doTests:
     printNow("Test 8 failed, colorInFront does not return white.")
     
   #Test 9: check if colorInFront is blue
+  turnLeft(m.t)
+  turnLeft(m.t)
   if m.colorInFront() == blue:
-    printNow("Test 9 passed, colorInFront returns blue.")
+    printNow("Test 9 passed, colorInFront returns blue when facing a wall.")
   else:
-    printNow("Test 9 failed, colorInFront does not return blue.")
+    printNow("Test 9 failed, colorInFront returned " + str(m.colorInFront()))
