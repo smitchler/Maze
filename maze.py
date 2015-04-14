@@ -39,7 +39,22 @@ class Maze(object):
       return red
     if distance(c, green) < 160:
       return green 
-   
+      
+  def travel2BranchOrWall(self):
+    """moves turtle forward until it hits branch or finds an alternative path"""
+    
+    
+  def reset(self):
+    """resets maze to original conditions"""
+    self.image = makePicture('Maze Image(1).jpg')
+    self.w.setPicture(self.image)
+    self.t.clearPath()
+    penUp(self.t)
+    moveTo(self.t, 30, 190)
+    turnToFace(self.t, 35, 190)
+    penDown(self.t)
+ 
+ 
 #Tests follow this line
 doTests = true
 if doTests:
@@ -105,3 +120,23 @@ if doTests:
     printNow("Test 9 passed, colorInFront returns blue when facing a wall.")
   else:
     printNow("Test 9 failed, colorInFront returned " + str(m.colorInFront()))
+    
+  #Test 10: check travel2BranchOrWall
+  if dir(m).index('travel2BranchOrWall') > 0:
+    printNow("Test 10 passed, travel2BranchOrWall exists.")
+  else:
+    printNow("Test 10 failed, travel2BranchOrWall does not exist.")
+    
+  #Test 11: check reset
+  if dir(m).index('reset') > 0:
+    printNow("Test 11 passed, reset exists.")
+  else:
+    printNow("Test 11 failed, reset does not exist.")
+    
+  #Test 12: check if maze is in initial condition
+  m.reset()
+  assert getXPos(m.t) == 30, "Test 12 failed, x position is " + str(getXPos(m.t))
+  assert getYPos(m.t) == 190, "Test 12 failed, y position is " + str(getYPos(m.t))
+  assert getHeading(m.t) == 90, "Test 12 failed, heading is " + str(getHeading(m.t))
+  printNow("Test 12 passed, x, y, and heading are correct after reset.")
+  
